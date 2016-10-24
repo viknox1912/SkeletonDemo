@@ -8,12 +8,26 @@ import android.widget.Toast;
 
 public class Overview extends AppCompatActivity implements View.OnClickListener{
     ImageButton btn_search, btn_groups, btn_chat, btn_settings;
+    android.app.FragmentManager manager = getFragmentManager();
+    android.app.FragmentTransaction transaction = manager.beginTransaction();
+    SettingsFrg frg = new SettingsFrg();
+    ChatFrg chfrg = new ChatFrg();
+    GrouFrg grpfrg = new GrouFrg();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
         loadUI();
+        transaction.add(R.id.frg_holder,frg,"SRCHFRG");
+
+    }
+
+    private void loadSettingsFrg() {
+        transaction.add(R.id.frg_holder,frg, "SRCHFRG");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     private void loadUI() {
@@ -32,19 +46,35 @@ public class Overview extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view){
     switch (view.getId()){
         case R.id.chatBtn:
+            loadChatFrg();
             Toast.makeText(Overview.this, "go to chat", Toast.LENGTH_SHORT).show();
             break;
         case R.id.searchBtn:
+            loadSettingsFrg();
             Toast.makeText(Overview.this, "go to search", Toast.LENGTH_SHORT).show();
             break;
         case R.id.settingsBtn:
             Toast.makeText(Overview.this, "go to settings", Toast.LENGTH_SHORT).show();
             break;
         case R.id.groupsBtn:
+            loadGrouFrg();
             Toast.makeText(Overview.this, "go to groups", Toast.LENGTH_SHORT).show();
             break;
 
     }
 
+    }
+
+    private void loadGrouFrg() {
+
+        transaction.replace(R.id.frg_holder,grpfrg,"GRPFRG");
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    private void loadChatFrg() {
+        transaction.replace(R.id.frg_holder,chfrg,"CHTFRG");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
