@@ -1,5 +1,6 @@
 package com.example.viknox.skeletondemo;
 
+import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,16 @@ public class Overview extends AppCompatActivity implements View.OnClickListener{
     ChatFrg chfrg = new ChatFrg();
     GrouFrg grpfrg = new GrouFrg();
 
+    public void switchFragment(final Fragment fragment, final String tag) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (fragment != null) {
+                    manager.beginTransaction().replace(R.id.frg_holder, fragment, tag).addToBackStack(null).commitAllowingStateLoss();
+                }
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,14 +32,11 @@ public class Overview extends AppCompatActivity implements View.OnClickListener{
         setContentView(R.layout.activity_overview);
         loadUI();
         transaction.add(R.id.frg_holder,frg,"SRCHFRG");
-
-    }
-
-    private void loadSettingsFrg() {
-        transaction.add(R.id.frg_holder,frg, "SRCHFRG");
-        transaction.addToBackStack(null);
         transaction.commit();
+
     }
+
+  
 
     private void loadUI() {
         btn_chat = (ImageButton) findViewById(R.id.chatBtn);
@@ -46,18 +54,21 @@ public class Overview extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view){
     switch (view.getId()){
         case R.id.chatBtn:
-            loadChatFrg();
+            switchFragment(chfrg,"CHTFRG");
+           // loadChatFrg();
             Toast.makeText(Overview.this, "go to chat", Toast.LENGTH_SHORT).show();
             break;
         case R.id.searchBtn:
-            loadSettingsFrg();
+            switchFragment(frg,"SRCHFRG");
+           // loadSettingsFrg();
             Toast.makeText(Overview.this, "go to search", Toast.LENGTH_SHORT).show();
             break;
         case R.id.settingsBtn:
             Toast.makeText(Overview.this, "go to settings", Toast.LENGTH_SHORT).show();
             break;
         case R.id.groupsBtn:
-            loadGrouFrg();
+            switchFragment(grpfrg,"GRPFRG");
+            //loadGrouFrg();
             Toast.makeText(Overview.this, "go to groups", Toast.LENGTH_SHORT).show();
             break;
 
@@ -65,16 +76,5 @@ public class Overview extends AppCompatActivity implements View.OnClickListener{
 
     }
 
-    private void loadGrouFrg() {
 
-        transaction.replace(R.id.frg_holder,grpfrg,"GRPFRG");
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
-
-    private void loadChatFrg() {
-        transaction.replace(R.id.frg_holder,chfrg,"CHTFRG");
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }
 }
