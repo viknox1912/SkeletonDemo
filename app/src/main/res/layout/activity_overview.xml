@@ -11,7 +11,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/nav_bar"
-        android:background="#dbfbff"></FrameLayout>
+        android:background="#f8fafa"></FrameLayout>
 
     <LinearLayout
 
@@ -60,7 +60,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/settingsBtn"
                 android:src="@drawable/ic_settings" />
-        </>
+        </FrameLayout>
 
 
         <FrameLayout
