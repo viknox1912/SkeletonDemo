@@ -3,8 +3,11 @@ package com.example.viknox.skeletondemo;
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
@@ -18,6 +21,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener,
     GrouFrg grpfrg = new GrouFrg();
     SearchFrg srchfrg = new SearchFrg();
     HomeFrg hmfrg = new HomeFrg();
+    LinearLayout nav_pane;
 
     public void switchFragment(final Fragment fragment, final String tag) {
         runOnUiThread(new Runnable() {
@@ -41,7 +45,18 @@ public class Overview extends AppCompatActivity implements View.OnClickListener,
         transaction.commit();
 
     }
+
+    @Override
+    protected void onResume() {
+        nav_pane.setVisibility(View.GONE);//Bug to fix: Remove pane whenever Home pane is resumed
+                                            //Solution: Button to navigate to home fragment
+
+        super.onResume();
+    }
+
     private void loadUI() {
+        nav_pane = (LinearLayout)findViewById(R.id.nav_bar);
+        nav_pane.setVisibility(View.GONE);
         btn_chat = (ImageButton) findViewById(R.id.chatBtn);
         btn_search = (ImageButton)findViewById(R.id.searchBtn);
         btn_settings = (ImageButton)findViewById(R.id.settingsBtn);
@@ -55,15 +70,14 @@ public class Overview extends AppCompatActivity implements View.OnClickListener,
 
 
     public void onClick(View view){
+
     switch (view.getId()){
         case R.id.chatBtn:
             switchFragment(chfrg,"CHTFRG");
-           // loadChatFrg();
             Toast.makeText(Overview.this, "go to chat", Toast.LENGTH_SHORT).show();
             break;
         case R.id.searchBtn:
             switchFragment(srchfrg,"SRCHFRG");
-           // loadSettingsFrg();
             Toast.makeText(Overview.this, "go to search", Toast.LENGTH_SHORT).show();
             break;
         case R.id.settingsBtn:
@@ -72,13 +86,13 @@ public class Overview extends AppCompatActivity implements View.OnClickListener,
             break;
         case R.id.groupsBtn:
             switchFragment(grpfrg,"GRPFRG");
-            //loadGrouFrg();
             Toast.makeText(Overview.this, "go to groups", Toast.LENGTH_SHORT).show();
             break;
     }
     }
     @Override
     public void respond(String data1) {
+        nav_pane.setVisibility(View.VISIBLE);
         switch(data1){
             case "Chat":
                  switchFragment(chfrg,"CHTFRG");

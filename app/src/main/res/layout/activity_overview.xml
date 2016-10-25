@@ -7,55 +7,77 @@
     <FrameLayout
         android:id="@+id/frg_holder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/relativeLayout2"></FrameLayout>
+        android:layout_above="@+id/nav_bar"
+        android:background="#dbfbff"></FrameLayout>
 
-    <RelativeLayout
+    <LinearLayout
+
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="72dp"
+        android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:background="#00BBFF"
         android:layout_gravity="center_horizontal|bottom"
-        android:id="@+id/relativeLayout2">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/searchBtn"
-            android:src="@drawable/ic_sog"
-            android:layout_toStartOf="@+id/settingsBtn"
-            android:layout_alignTop="@+id/settingsBtn" />
+        android:id="@+id/nav_bar"
+        android:baselineAligned="false">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/searchBtn"
+                android:src="@drawable/ic_sog"
+                />
+        </FrameLayout>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/groupsBtn"
-            android:src="@drawable/ic_groups"
-            android:layout_gravity="right|center_vertical"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/settingsBtn"
-            android:src="@drawable/ic_settings"
-            android:layout_gravity="center"
-            android:layout_alignTop="@+id/groupsBtn"
-            android:layout_toStartOf="@+id/chatBtn" />
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/groupsBtn"
+                android:src="@drawable/ic_groups"
+                 />
+        </FrameLayout>
 
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/chatBtn"
-            android:src="@drawable/ic_chat"
-            android:layout_gravity="left|center_vertical"
-            android:layout_alignParentBottom="true"
-            android:layout_toStartOf="@+id/groupsBtn"
-            android:layout_alignTop="@+id/groupsBtn" />
-    </RelativeLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/settingsBtn"
+                android:src="@drawable/ic_settings" />
+        </>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/chatBtn"
+                android:src="@drawable/ic_chat"
+                />
+        </FrameLayout
+>
+
+    </LinearLayout>
 
 
 </RelativeLayout>
