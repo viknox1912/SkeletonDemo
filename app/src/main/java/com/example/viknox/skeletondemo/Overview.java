@@ -7,20 +7,27 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+
 public class Overview extends AppCompatActivity implements View.OnClickListener{
+    private
     ImageButton btn_search, btn_groups, btn_chat, btn_settings;
     android.app.FragmentManager manager = getFragmentManager();
     android.app.FragmentTransaction transaction = manager.beginTransaction();
     SettingsFrg frg = new SettingsFrg();
     ChatFrg chfrg = new ChatFrg();
     GrouFrg grpfrg = new GrouFrg();
+    SearchFrg srchfrg = new SearchFrg();
+    HomeFrg hmfrg = new HomeFrg();
 
     public void switchFragment(final Fragment fragment, final String tag) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 if (fragment != null) {
-                    manager.beginTransaction().replace(R.id.frg_holder, fragment, tag).addToBackStack(null).commitAllowingStateLoss();
+                    manager.beginTransaction().replace(R.id.frg_holder,
+                    fragment, tag).addToBackStack(null).commitAllowingStateLoss();
+
                 }
             }
         });
@@ -29,14 +36,15 @@ public class Overview extends AppCompatActivity implements View.OnClickListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
         setContentView(R.layout.activity_overview);
         loadUI();
-        transaction.add(R.id.frg_holder,frg,"SRCHFRG");
+        transaction.add(R.id.frg_holder,hmfrg,"STNGFRG");
         transaction.commit();
 
     }
 
-  
+
 
     private void loadUI() {
         btn_chat = (ImageButton) findViewById(R.id.chatBtn);
@@ -59,11 +67,12 @@ public class Overview extends AppCompatActivity implements View.OnClickListener{
             Toast.makeText(Overview.this, "go to chat", Toast.LENGTH_SHORT).show();
             break;
         case R.id.searchBtn:
-            switchFragment(frg,"SRCHFRG");
+            switchFragment(srchfrg,"SRCHFRG");
            // loadSettingsFrg();
             Toast.makeText(Overview.this, "go to search", Toast.LENGTH_SHORT).show();
             break;
         case R.id.settingsBtn:
+            switchFragment(frg, "STNGFRG");
             Toast.makeText(Overview.this, "go to settings", Toast.LENGTH_SHORT).show();
             break;
         case R.id.groupsBtn:

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageButton
+            android:layout_width="160dp"
+            android:layout_height="195dp"
+            android:id="@+id/btn_search"
+            android:layout_gravity="left|top"
+            android:src="@drawable/ic_sog"
+            android:background="@drawable/button_border"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp" />
+
+        <ImageButton
+            android:layout_width="160dp"
+            android:layout_height="195dp"
+            android:id="@+id/btn_groups"
+            android:background="@drawable/button_border"
+            android:src="@drawable/ic_groups"
+            android:padding="50dp"
+            android:layout_gravity="right|top"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:clickable="true"/>
+        <ImageButton
+            android:layout_width="160dp"
+            android:layout_height="195dp"
+            android:id="@+id/btn_chat"
+            android:background="@drawable/button_border"
+            android:layout_gravity="left|bottom"
+            android:src="@drawable/ic_chat"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp" />
+        <ImageButton
+            android:layout_width="160dp"
+            android:layout_height="195dp"
+            android:id="@+id/btn_settings"
+            android:background="@drawable/button_border"
+            android:layout_gravity="bottom|right"
+            android:src="@drawable/ic_settings"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp" />
+
+</FrameLayout>
