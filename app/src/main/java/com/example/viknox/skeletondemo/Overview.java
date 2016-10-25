@@ -9,9 +9,8 @@ import android.widget.Toast;
 
 import com.facebook.FacebookSdk;
 
-public class Overview extends AppCompatActivity implements View.OnClickListener{
-    private
-    ImageButton btn_search, btn_groups, btn_chat, btn_settings;
+public class Overview extends AppCompatActivity implements View.OnClickListener, FragmentComms {
+    private ImageButton btn_search, btn_groups, btn_chat, btn_settings;
     android.app.FragmentManager manager = getFragmentManager();
     android.app.FragmentTransaction transaction = manager.beginTransaction();
     SettingsFrg frg = new SettingsFrg();
@@ -32,7 +31,6 @@ public class Overview extends AppCompatActivity implements View.OnClickListener{
             }
         });
     }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +41,6 @@ public class Overview extends AppCompatActivity implements View.OnClickListener{
         transaction.commit();
 
     }
-
-
-
     private void loadUI() {
         btn_chat = (ImageButton) findViewById(R.id.chatBtn);
         btn_search = (ImageButton)findViewById(R.id.searchBtn);
@@ -80,10 +75,23 @@ public class Overview extends AppCompatActivity implements View.OnClickListener{
             //loadGrouFrg();
             Toast.makeText(Overview.this, "go to groups", Toast.LENGTH_SHORT).show();
             break;
-
     }
-
     }
-
-
-}
+    @Override
+    public void respond(String data1) {
+        switch(data1){
+            case "Chat":
+                 switchFragment(chfrg,"CHTFRG");
+                break;
+            case "Group":
+                switchFragment(grpfrg,"GRPFRG");
+                break;
+            case "Search":
+                  switchFragment(srchfrg,"SRCHFRG");
+                break;
+            case "Settings":
+                  switchFragment(frg, "STNGFRG");
+                break;
+        }
+    }
+ }

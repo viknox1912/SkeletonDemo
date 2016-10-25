@@ -40,19 +40,24 @@ public class HomeFrg extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()){
             case R.id.btn_chat:
-                Log.w("Viknox","Go to Chat");
-            break;
+                fcom.respond("Chat");
+                Toast.makeText(getActivity(), "Chat button pressed", Toast.LENGTH_SHORT).show();
+                break;
             case  R.id.btn_groups:
-                Log.w("Viknox","Go to Groups");
+                fcom.respond("Group");
+                Toast.makeText(getActivity(), "Groups button pressed", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_search:
-                Log.w("Viknox","Go to Search");
-
+                fcom.respond("Search");
+                Toast.makeText(getActivity(), "Search button pressed", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_settings:
-                Log.w("Viknox","Go to Settings");
+                fcom.respond("Settings");
+                Toast.makeText(getActivity(), "Settings button pressed", Toast.LENGTH_SHORT).show();
                 break;
         }
+
+
         //
 
     }
